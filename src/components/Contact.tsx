@@ -27,33 +27,33 @@ const Contact = () => {
     <section id="contact" className="py-20 bg-white">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">Let's Build Your SaaS</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">Let's Build Your AI-Powered SaaS</h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto"></div>
           <p className="text-xl text-gray-600 mt-6 max-w-3xl mx-auto">
-            Ready to turn your idea into a profitable software product? Let's discuss your vision and create a roadmap to revenue.
+            Ready to turn your idea into a profitable AI-enhanced software product? Let's discuss your vision and create an intelligent automation roadmap to revenue.
           </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Info */}
           <div className="space-y-8">
-            <h3 className="text-2xl font-semibold text-gray-900 mb-6">Start Your Product Journey</h3>
+            <h3 className="text-2xl font-semibold text-gray-900 mb-6">Start Your AI Product Journey</h3>
             <p className="text-gray-600 leading-relaxed">
               I work with ambitious entrepreneurs and growing businesses to build 
-              software products that generate real revenue. Whether you're validating 
-              an MVP or scaling an existing product, I bring the technical expertise 
-              and business insight to make it profitable.
+              AI-powered software products that generate real revenue. Whether you're validating 
+              an MVP with intelligent features or scaling with advanced automation, I bring the technical expertise 
+              and AI automation insight to make it profitable.
             </p>
 
             <div className="bg-blue-50 p-6 rounded-lg">
-              <h4 className="font-semibold text-gray-900 mb-3">Free Strategy Call</h4>
+              <h4 className="font-semibold text-gray-900 mb-3">Free AI Strategy Call</h4>
               <p className="text-gray-600 mb-4">
-                Book a 30-minute call to discuss your product idea, market validation, 
-                and technical roadmap. No sales pitch - just valuable insights.
+                Book a 30-minute call to discuss your product idea, AI automation opportunities, 
+                and technical roadmap. We'll explore how AI agents and n8n workflows can transform your business.
               </p>
               <button className="flex items-center space-x-2 text-blue-600 font-semibold hover:text-blue-700">
                 <Calendar size={18} />
-                <span>Schedule Call</span>
+                <span>Schedule AI Consultation</span>
               </button>
             </div>
 
@@ -97,7 +97,7 @@ const Contact = () => {
 
           {/* Contact Form */}
           <div className="bg-gray-50 rounded-xl p-8">
-            <h3 className="text-2xl font-semibold text-gray-900 mb-6">Tell Me About Your Project</h3>
+            <h3 className="text-2xl font-semibold text-gray-900 mb-6">Tell Me About Your AI Project</h3>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <input
@@ -122,7 +122,7 @@ const Contact = () => {
               <input
                 type="text"
                 name="subject"
-                placeholder="Project Type (MVP, SaaS, Optimization, etc.)"
+                placeholder="Project Type (AI SaaS, Automation, n8n Workflows, etc.)"
                 value={formData.subject}
                 onChange={handleChange}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all duration-200"
@@ -130,7 +130,7 @@ const Contact = () => {
               />
               <textarea
                 name="message"
-                placeholder="Describe your project idea, target market, and timeline..."
+                placeholder="Describe your project idea, automation needs, target market, and timeline..."
                 rows={5}
                 value={formData.message}
                 onChange={handleChange}
@@ -141,7 +141,7 @@ const Contact = () => {
                 type="submit"
                 className="w-full px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300"
               >
-                Start the Conversation
+                Start the AI Conversation
               </button>
             </form>
           </div>

@@ -12,6 +12,11 @@ const Skills = () => {
       color: "from-purple-500 to-pink-500"
     },
     {
+      title: "AI & Automation",
+      skills: ["AI Agent Development", "n8n Workflow Automation", "OpenAI/Claude Integration", "Custom AI Solutions", "Process Automation"],
+      color: "from-emerald-500 to-teal-500"
+    },
+    {
       title: "Business Operations",
       skills: ["Revenue Optimization", "Customer Acquisition", "Analytics & Metrics", "A/B Testing", "Customer Support"],
       color: "from-green-500 to-teal-500"
@@ -30,11 +35,11 @@ const Skills = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">Solo Stack Mastery</h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto"></div>
           <p className="text-xl text-gray-600 mt-6 max-w-3xl mx-auto">
-            The complete skill set needed to build, launch, and scale software products independently
+            The complete skill set needed to build, launch, and scale AI-powered software products independently
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
           {skillCategories.map((category, index) => (
             <div key={index} className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
               <div className={`w-12 h-12 bg-gradient-to-r ${category.color} rounded-lg mb-4 flex items-center justify-center`}>
