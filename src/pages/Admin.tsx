@@ -1,15 +1,20 @@
 
 import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
+import { useAuth } from '@/contexts/AuthContext';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Button } from '@/components/ui/button';
 import ProjectsAdmin from '@/components/admin/ProjectsAdmin';
 import SkillsAdmin from '@/components/admin/SkillsAdmin';
 import ServicesAdmin from '@/components/admin/ServicesAdmin';
-import { Settings, Database, Briefcase, Code, Wrench } from 'lucide-react';
+import { Settings, Database, Briefcase, Code, Wrench, LogOut, User } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
 
 const Admin = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const { user, signOut } = useAuth();
+  const { toast } = useToast();
 
   useEffect(() => {
     // Simple check to ensure we can connect to Supabase
@@ -26,6 +31,14 @@ const Admin = () => {
     checkConnection();
   }, []);
 
+  const handleSignOut = async () => {
+    await signOut();
+    toast({
+      title: 'Signed out',
+      description: 'You have been signed out successfully.',
+    });
+  };
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -40,12 +53,29 @@ const Admin = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-6 py-8">
-        <div className="mb-8">
-          <div className="flex items-center gap-3 mb-2">
-            <Settings className="h-8 w-8 text-blue-600" />
-            <h1 className="text-3xl font-bold text-gray-900">Admin Console</h1>
+        <div className="mb-8 flex items-center justify-between">
+          <div>
+            <div className="flex items-center gap-3 mb-2">
+              <Settings className="h-8 w-8 text-blue-600" />
+              <h1 className="text-3xl font-bold text-gray-900">Admin Console</h1>
+            </div>
+            <p className="text-gray-600">Manage your portfolio content</p>
           </div>
-          <p className="text-gray-600">Manage your portfolio content</p>
+          
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 text-sm text-gray-600">
+              <User className="h-4 w-4" />
+              <span>{user?.email}</span>
+            </div>
+            <Button
+              variant="outline"
+              onClick={handleSignOut}
+              className="flex items-center gap-2"
+            >
+              <LogOut className="h-4 w-4" />
+              Sign Out
+            </Button>
+          </div>
         </div>
 
         <Tabs defaultValue="projects" className="space-y-6">
