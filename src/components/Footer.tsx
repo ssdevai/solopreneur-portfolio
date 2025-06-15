@@ -13,6 +13,7 @@ type FooterSettings = {
   creator_statement: string;
   creator_byline: string;
   copyright_holder: string;
+  phone?: string;
 };
 
 const Footer = () => {

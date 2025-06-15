@@ -1,6 +1,6 @@
-
-import { Mail, Phone, Linkedin, Github, Calendar, Bot } from 'lucide-react';
+import { Calendar, Bot } from 'lucide-react';
 import { useState } from 'react';
+import ContactInfo from './ContactInfo';
 
 type ContactProps = {
   onOpenChat: (name: string, subject: string, message: string) => void;
@@ -120,44 +120,7 @@ const Contact = ({ onOpenChat }: ContactProps) => {
               </button>
             </div>
 
-            <div className="space-y-6">
-              <div className="flex items-center space-x-4">
-                <div className="bg-blue-100 p-3 rounded-lg">
-                  <Mail className="text-blue-600" size={20} />
-                </div>
-                <div>
-                  <div className="font-semibold text-gray-900">Email</div>
-                  <div className="text-gray-600">hello@solopreneur.dev</div>
-                </div>
-              </div>
-
-              <div className="flex items-center space-x-4">
-                <div className="bg-purple-100 p-3 rounded-lg">
-                  <Phone className="text-purple-600" size={20} />
-                </div>
-                <div>
-                  <div className="font-semibold text-gray-900">Phone</div>
-                  <div className="text-gray-600">+1 (555) 123-4567</div>
-                </div>
-              </div>
-
-              <div className="flex space-x-4">
-                <a 
-                  href="#" 
-                  className="bg-gray-100 p-3 rounded-lg hover:bg-blue-100 transition-colors duration-200"
-                  aria-label="Connect on LinkedIn"
-                >
-                  <Linkedin className="text-gray-600 hover:text-blue-600" size={20} />
-                </a>
-                <a 
-                  href="#" 
-                  className="bg-gray-100 p-3 rounded-lg hover:bg-gray-200 transition-colors duration-200"
-                  aria-label="View GitHub Projects"
-                >
-                  <Github className="text-gray-600" size={20} />
-                </a>
-              </div>
-            </div>
+            <ContactInfo />
           </div>
 
           {/* Contact Form */}
