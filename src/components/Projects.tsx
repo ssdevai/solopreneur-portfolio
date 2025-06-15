@@ -1,29 +1,32 @@
 
-import { Github, Link } from 'lucide-react';
+import { Github, Link, TrendingUp } from 'lucide-react';
 
 const Projects = () => {
   const projects = [
     {
-      title: "E-Commerce Platform",
-      description: "Full-stack e-commerce solution with React, Node.js, and Stripe integration. Features include user authentication, product management, and secure payments.",
-      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=600&h=400&fit=crop",
-      tech: ["React", "Node.js", "MongoDB", "Stripe"],
-      github: "#",
-      live: "#"
-    },
-    {
-      title: "Task Management App",
-      description: "Collaborative project management tool with real-time updates, drag-and-drop functionality, and team collaboration features.",
+      title: "TaskFlow SaaS",
+      description: "Project management platform serving 5,000+ users. Built with React and Node.js, generating $50K+ monthly recurring revenue through subscription tiers.",
       image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&h=400&fit=crop",
-      tech: ["Vue.js", "Express", "Socket.io", "PostgreSQL"],
+      tech: ["React", "Node.js", "PostgreSQL", "Stripe"],
+      metrics: { users: "5K+", revenue: "$50K MRR", growth: "+25%" },
       github: "#",
       live: "#"
     },
     {
-      title: "Analytics Dashboard",
-      description: "Business intelligence dashboard with interactive charts, real-time data visualization, and customizable reporting features.",
+      title: "AnalyticsPro Dashboard",
+      description: "Business intelligence SaaS helping SMBs make data-driven decisions. Custom visualization engine with real-time data processing and white-label options.",
       image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=600&h=400&fit=crop",
-      tech: ["React", "D3.js", "Python", "FastAPI"],
+      tech: ["Vue.js", "Python", "FastAPI", "AWS"],
+      metrics: { users: "2K+", revenue: "$30K MRR", growth: "+40%" },
+      github: "#",
+      live: "#"
+    },
+    {
+      title: "ContentCraft AI",
+      description: "AI-powered content generation tool for marketers and creators. Integrated OpenAI APIs with custom fine-tuning for industry-specific content.",
+      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=600&h=400&fit=crop",
+      tech: ["Next.js", "OpenAI API", "Supabase", "Vercel"],
+      metrics: { users: "8K+", revenue: "$75K MRR", growth: "+60%" },
       github: "#",
       live: "#"
     }
@@ -33,10 +36,10 @@ const Projects = () => {
     <section id="projects" className="py-20 bg-white">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">Featured Projects</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">Revenue-Generating Products</h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto"></div>
           <p className="text-xl text-gray-600 mt-6 max-w-3xl mx-auto">
-            Showcasing innovative solutions and technical excellence
+            Profitable SaaS products built from idea to sustainable recurring revenue
           </p>
         </div>
 
@@ -55,6 +58,21 @@ const Projects = () => {
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-3 text-gray-900">{project.title}</h3>
                 <p className="text-gray-600 mb-4 leading-relaxed">{project.description}</p>
+                
+                <div className="grid grid-cols-3 gap-2 mb-4 p-3 bg-green-50 rounded-lg">
+                  <div className="text-center">
+                    <div className="text-sm font-semibold text-green-700">{project.metrics.users}</div>
+                    <div className="text-xs text-green-600">Users</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-sm font-semibold text-green-700">{project.metrics.revenue}</div>
+                    <div className="text-xs text-green-600">Revenue</div>
+                  </div>
+                  <div className="text-center flex items-center justify-center">
+                    <TrendingUp size={12} className="text-green-600 mr-1" />
+                    <div className="text-sm font-semibold text-green-700">{project.metrics.growth}</div>
+                  </div>
+                </div>
                 
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tech.map((tech, techIndex) => (
@@ -77,7 +95,7 @@ const Projects = () => {
                     className="flex items-center space-x-2 text-gray-600 hover:text-purple-600 transition-colors duration-200"
                   >
                     <Link size={18} />
-                    <span>Live Demo</span>
+                    <span>Product</span>
                   </a>
                 </div>
               </div>

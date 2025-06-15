@@ -2,23 +2,23 @@
 const Skills = () => {
   const skillCategories = [
     {
-      title: "Frontend Development",
-      skills: ["React", "TypeScript", "Next.js", "Tailwind CSS", "Vue.js"],
+      title: "Product Development",
+      skills: ["MVP Development", "SaaS Architecture", "User Experience Design", "Product Strategy", "Market Validation"],
       color: "from-blue-500 to-cyan-500"
     },
     {
-      title: "Backend Development",
-      skills: ["Node.js", "Python", "PostgreSQL", "MongoDB", "REST APIs"],
+      title: "Technical Stack",
+      skills: ["React/Next.js", "Node.js/Python", "PostgreSQL/MongoDB", "AWS/Vercel", "Stripe/Payment APIs"],
       color: "from-purple-500 to-pink-500"
     },
     {
-      title: "DevOps & Tools",
-      skills: ["Docker", "AWS", "Git", "GitHub Actions", "Vercel"],
+      title: "Business Operations",
+      skills: ["Revenue Optimization", "Customer Acquisition", "Analytics & Metrics", "A/B Testing", "Customer Support"],
       color: "from-green-500 to-teal-500"
     },
     {
-      title: "Business Skills",
-      skills: ["Product Strategy", "UI/UX Design", "Project Management", "Client Relations"],
+      title: "Growth & Marketing",
+      skills: ["SEO Optimization", "Content Marketing", "Email Automation", "Social Media", "Community Building"],
       color: "from-orange-500 to-red-500"
     }
   ];
@@ -27,10 +27,10 @@ const Skills = () => {
     <section id="skills" className="py-20 bg-gray-50">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">Skills & Expertise</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">Solo Stack Mastery</h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto"></div>
           <p className="text-xl text-gray-600 mt-6 max-w-3xl mx-auto">
-            A comprehensive toolkit for building modern, scalable applications
+            The complete skill set needed to build, launch, and scale software products independently
           </p>
         </div>
 

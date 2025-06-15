@@ -17,15 +17,15 @@ const Hero = () => {
       <div className="container mx-auto px-6 text-center relative z-10">
         <div className="animate-fade-in">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
-            Software Developer
+            Software Solopreneur
           </h1>
           <h2 className="text-2xl md:text-3xl text-gray-600 mb-8 font-light">
-            Building Digital Solutions for Tomorrow
+            Transforming Ideas into Profitable Software Products
           </h2>
           <p className="text-lg md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
-            Passionate solopreneur creating innovative software solutions. 
-            From concept to deployment, I bring ideas to life with modern technologies 
-            and clean, scalable code.
+            Independent software developer specializing in building and launching SaaS products. 
+            From MVP to scale - I turn your vision into revenue-generating applications with 
+            proven technical expertise and entrepreneurial insight.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -33,13 +33,13 @@ const Hero = () => {
               onClick={() => scrollToSection('projects')}
               className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300"
             >
-              View My Work
+              View My Products
             </button>
             <button
               onClick={() => scrollToSection('contact')}
               className="px-8 py-4 border-2 border-gray-300 text-gray-700 rounded-full font-semibold hover:border-blue-600 hover:text-blue-600 transition-all duration-300"
             >
-              Get In Touch
+              Start Your Project
             </button>
           </div>
         </div>
