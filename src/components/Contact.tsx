@@ -1,6 +1,7 @@
 import { Calendar, Bot } from 'lucide-react';
 import { useState } from 'react';
 import ContactInfo from './ContactInfo';
+import MeetingLink from './MeetingLink';
 
 type ContactProps = {
   onOpenChat: (name: string, subject: string, message: string) => void;
@@ -114,10 +115,7 @@ const Contact = ({ onOpenChat }: ContactProps) => {
               <p className="text-gray-600 mb-4">
                 Get free advice on your idea—and a clear plan for next steps, costs, and what’s possible.
               </p>
-              <button className="flex items-center space-x-2 text-blue-600 font-semibold hover:text-blue-700">
-                <Calendar size={18} />
-                <span>Book Free Consultation</span>
-              </button>
+              <MeetingLink />
             </div>
 
             <ContactInfo />

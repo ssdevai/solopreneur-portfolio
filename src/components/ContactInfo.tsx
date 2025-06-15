@@ -8,6 +8,7 @@ type ContactInfoSettings = {
   phone: string;
   github_url: string;
   linkedin_url: string;
+  meeting_url?: string;
 };
 
 const ContactInfo = () => {

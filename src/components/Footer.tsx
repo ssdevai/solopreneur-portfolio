@@ -14,6 +14,7 @@ type FooterSettings = {
   creator_byline: string;
   copyright_holder: string;
   phone?: string;
+  meeting_url?: string;
 };
 
 const Footer = () => {
