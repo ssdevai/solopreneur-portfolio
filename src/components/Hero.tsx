@@ -1,4 +1,3 @@
-
 import { ArrowDown } from 'lucide-react';
 
 const Hero = () => {
@@ -44,9 +43,6 @@ const Hero = () => {
           </div>
         </div>
         
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <ArrowDown className="text-gray-400" size={24} />
-        </div>
       </div>
     </section>
   );
