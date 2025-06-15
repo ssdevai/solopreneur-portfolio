@@ -19,7 +19,7 @@ const Services = () => {
       icon: Brain,
       title: "AI Agent Development",
       description: "Custom AI agents and intelligent automation solutions that handle complex business processes, customer interactions, and data analysis autonomously.",
-      features: ["Custom AI Agents", "LLM Integration", "Intelligent Automation", "AI-Powered Features"]
+      features: ["Custom AI Agents", "LLM Integration", "Prompt Engineering", "Intelligent Automation", "AI-Powered Features"]
     },
     {
       icon: Workflow,

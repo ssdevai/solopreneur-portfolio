@@ -1,4 +1,3 @@
-
 const About = () => {
   return (
     <section id="about" className="py-20 bg-white">
@@ -14,15 +13,14 @@ const About = () => {
               Building AI-Powered Software Products That Generate Revenue
             </h3>
             <p className="text-gray-600 leading-relaxed">
-              As a solo software entrepreneur specializing in AI automation, I combine deep technical expertise with 
-              business acumen to create profitable AI-enhanced software products. I've successfully 
-              launched multiple SaaS applications with intelligent automation, understanding both the code and the 
-              market forces that drive sustainable growth.
+              As a solo software entrepreneur specializing in AI automation <b>and prompt engineering</b>, I combine deep technical expertise with 
+              business acumen to create profitable AI-enhanced software products. With advanced skills in designing effective prompts,
+              integrating LLMs, and leveraging intelligent workflows, I deliver solutions that are not only powerful, but also intuitive and user-centered.
             </p>
             <p className="text-gray-600 leading-relaxed">
               My lean approach means faster decision-making, direct communication, and 
               cost-effective solutions. I focus on building AI-powered MVPs that validate market 
-              demand quickly, then scale using intelligent automation with n8n workflows and custom AI agents.
+              demand quickly, then scale using smart automation, n8n workflows, and custom AI agents tailored and fine-tuned through expert prompt engineering for maximum value.
             </p>
             
             <div className="grid grid-cols-2 gap-6 mt-8">

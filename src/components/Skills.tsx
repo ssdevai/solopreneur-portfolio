@@ -13,7 +13,14 @@ const Skills = () => {
     },
     {
       title: "AI & Automation",
-      skills: ["AI Agent Development", "n8n Workflow Automation", "OpenAI/Claude Integration", "Custom AI Solutions", "Process Automation"],
+      skills: [
+        "AI Agent Development",
+        "n8n Workflow Automation",
+        "OpenAI/Claude Integration",
+        "Prompt Engineering",
+        "Custom AI Solutions",
+        "Process Automation"
+      ],
       color: "from-emerald-500 to-teal-500"
     },
     {
