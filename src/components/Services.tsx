@@ -5,39 +5,39 @@ const Services = () => {
   const services = [
     {
       icon: Rocket,
-      title: "MVP to Market",
-      description: "Rapid development of minimum viable products with built-in analytics and user feedback systems to validate your idea and find product-market fit.",
-      features: ["Market Research", "MVP Development", "User Testing", "Launch Strategy"]
+      title: "Turn Ideas into Apps",
+      description: "Transform your business idea into a working software application. Perfect for testing your concept with real users and getting to market quickly.",
+      features: ["Idea Validation", "Quick Development", "User Testing", "Market Launch"]
     },
     {
       icon: Target,
-      title: "SaaS Development",
-      description: "Complete SaaS application development including subscription management, user authentication, payment processing, and scalable architecture.",
-      features: ["Subscription Logic", "Payment Integration", "User Management", "Analytics Dashboard"]
+      title: "Business Software Solutions",
+      description: "Custom software applications for your business needs - from customer management systems to online stores with subscription billing.",
+      features: ["Custom Business Apps", "Payment Processing", "User Accounts", "Business Analytics"]
     },
     {
       icon: Brain,
-      title: "AI Agent Development",
-      description: "Custom AI agents and intelligent automation solutions that handle complex business processes, customer interactions, and data analysis autonomously.",
-      features: ["Custom AI Agents", "LLM Integration", "Prompt Engineering", "Intelligent Automation", "AI-Powered Features"]
+      title: "Smart Automation Tools",
+      description: "Add artificial intelligence to your business processes. Automate customer service, data analysis, and repetitive tasks to save time and money.",
+      features: ["AI Chatbots", "Smart Analytics", "Automated Workflows", "Intelligent Features"]
     },
     {
       icon: Workflow,
-      title: "n8n Automation",
-      description: "Advanced workflow automation using n8n to connect your tools, automate repetitive tasks, and create intelligent business process flows.",
-      features: ["Workflow Design", "API Integrations", "Process Automation", "Data Synchronization"]
+      title: "Business Process Automation",
+      description: "Connect your existing tools and automate repetitive tasks. Save hours of manual work by having your systems talk to each other automatically.",
+      features: ["Tool Integration", "Automated Tasks", "Data Syncing", "Workflow Optimization"]
     },
     {
       icon: Zap,
-      title: "Product Optimization",
-      description: "Performance optimization, conversion rate improvement, and feature enhancement to maximize user engagement and revenue growth.",
-      features: ["Performance Tuning", "A/B Testing", "Conversion Optimization", "Feature Enhancement"]
+      title: "App Performance & Growth",
+      description: "Make your existing software faster, more user-friendly, and more profitable. Optimize for better user experience and increased revenue.",
+      features: ["Speed Optimization", "User Experience", "Revenue Growth", "Feature Enhancement"]
     },
     {
       icon: TrendingUp,
-      title: "Growth & Scale",
-      description: "Strategic guidance on scaling your product, implementing growth hacking techniques, and optimizing for sustainable long-term revenue.",
-      features: ["Growth Strategy", "Revenue Optimization", "User Acquisition", "Retention Systems"]
+      title: "Business Growth Strategy",
+      description: "Strategic guidance on growing your software product, attracting more users, and building sustainable revenue streams for long-term success.",
+      features: ["Growth Planning", "Revenue Optimization", "User Acquisition", "Business Strategy"]
     }
   ];
 
@@ -45,10 +45,10 @@ const Services = () => {
     <section id="services" className="py-20 bg-gray-50">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">AI-Powered Product Services</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">Software Development Services</h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto"></div>
           <p className="text-xl text-gray-600 mt-6 max-w-3xl mx-auto">
-            From AI agent development to revenue optimization - complete product development services with cutting-edge automation
+            From simple business apps to advanced automation - I help businesses create software solutions that work
           </p>
         </div>
 
@@ -78,15 +78,15 @@ const Services = () => {
 
         <div className="text-center mt-12">
           <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl p-8 max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold mb-4">Ready to Build Your AI-Powered Revenue Stream?</h3>
+            <h3 className="text-2xl font-bold mb-4">Ready to Build Your Business Software?</h3>
             <p className="text-lg mb-6 opacity-90">
-              Let's transform your idea into a profitable AI-enhanced SaaS product. From intelligent automation to recurring revenue in 90 days.
+              Let's discuss your project and create a solution that helps your business grow. From concept to launch in weeks, not months.
             </p>
             <button 
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               className="px-8 py-3 bg-white text-blue-600 rounded-full font-semibold hover:shadow-lg transition-shadow duration-300"
             >
-              Start Your AI SaaS Journey
+              Start Your Project Today
             </button>
           </div>
         </div>
