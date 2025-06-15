@@ -1,14 +1,18 @@
 import { Mail, Phone, Linkedin, Github, Calendar, Bot } from 'lucide-react';
 import { useState } from 'react';
-import { useToast } from "@/components/ui/use-toast";
 
 type ContactProps = {
   onOpenChat: () => void;
 };
 
 const Contact = ({ onOpenChat }: ContactProps) => {
-  const { toast } = useToast();
   const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+  const [errors, setErrors] = useState({
     name: '',
     email: '',
     subject: '',
@@ -16,21 +20,57 @@ const Contact = ({ onOpenChat }: ContactProps) => {
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]: value
     });
+    
+    // Clear error when user starts typing
+    if (errors[name as keyof typeof errors]) {
+      setErrors({
+        ...errors,
+        [name]: ''
+      });
+    }
+  };
+
+  const validateForm = () => {
+    const newErrors = {
+      name: '',
+      email: '',
+      subject: '',
+      message: ''
+    };
+    
+    let isValid = true;
+    
+    if (!formData.name.trim()) {
+      newErrors.name = 'Name is required';
+      isValid = false;
+    }
+    
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+      isValid = false;
+    }
+    
+    if (!formData.subject.trim()) {
+      newErrors.subject = 'Project type is required';
+      isValid = false;
+    }
+    
+    if (!formData.message.trim()) {
+      newErrors.message = 'Project description is required';
+      isValid = false;
+    }
+    
+    setErrors(newErrors);
+    return isValid;
   };
 
   const handleAiChatClick = () => {
-    const { name, email, subject, message } = formData;
-    if (!name || !email || !subject || !message) {
-      toast({
-        title: "Incomplete Form",
-        description: "Please fill out all fields before starting the AI chat.",
-        variant: "destructive",
-      });
-    } else {
+    if (validateForm()) {
       onOpenChat();
     }
   };
@@ -112,43 +152,63 @@ const Contact = ({ onOpenChat }: ContactProps) => {
             <h3 className="text-2xl font-semibold text-gray-900 mb-6">Tell me about your project requirement to get the AI guided assistant</h3>
             <form className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Your Name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all duration-200 ${
+                      errors.name ? 'border-red-500' : 'border-gray-300'
+                    }`}
+                    required
+                  />
+                  {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+                </div>
+                <div>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Your Email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all duration-200 ${
+                      errors.email ? 'border-red-500' : 'border-gray-300'
+                    }`}
+                    required
+                  />
+                  {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+                </div>
+              </div>
+              <div>
                 <input
                   type="text"
-                  name="name"
-                  placeholder="Your Name"
-                  value={formData.name}
+                  name="subject"
+                  placeholder="Project Type (AI SaaS, Automation, n8n Workflows, etc.)"
+                  value={formData.subject}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all duration-200"
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all duration-200 ${
+                    errors.subject ? 'border-red-500' : 'border-gray-300'
+                  }`}
                   required
                 />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Your Email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all duration-200"
-                  required
-                />
+                {errors.subject && <p className="text-red-500 text-sm mt-1">{errors.subject}</p>}
               </div>
-              <input
-                type="text"
-                name="subject"
-                placeholder="Project Type (AI SaaS, Automation, n8n Workflows, etc.)"
-                value={formData.subject}
-                onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all duration-200"
-                required
-              />
-              <textarea
-                name="message"
-                placeholder="Describe your project idea, automation needs, target market, and timeline..."
-                rows={5}
-                value={formData.message}
-                onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all duration-200 resize-none"
-                required
-              ></textarea>
+              <div>
+                <textarea
+                  name="message"
+                  placeholder="Describe your project idea, automation needs, target market, and timeline..."
+                  rows={5}
+                  value={formData.message}
+                  onChange={handleChange}
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all duration-200 resize-none ${
+                    errors.message ? 'border-red-500' : 'border-gray-300'
+                  }`}
+                  required
+                ></textarea>
+                {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
+              </div>
               <button
                 type="button"
                 onClick={handleAiChatClick}
