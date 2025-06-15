@@ -9,6 +9,7 @@ import Services from '@/components/Services';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import AIChatWidget from "@/components/AIChatWidget";
+import { Toaster } from "@/components/ui/toaster";
 
 const Index = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
@@ -24,6 +25,7 @@ const Index = () => {
       <Contact onOpenChat={() => setIsChatOpen(true)} />
       <Footer />
       <AIChatWidget open={isChatOpen} onOpenChange={setIsChatOpen} />
+      <Toaster />
     </div>
   );
 };

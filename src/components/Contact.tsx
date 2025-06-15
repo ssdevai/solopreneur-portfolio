@@ -1,12 +1,13 @@
-
 import { Mail, Phone, Linkedin, Github, Calendar, Bot } from 'lucide-react';
 import { useState } from 'react';
+import { useToast } from "@/components/ui/use-toast";
 
 type ContactProps = {
   onOpenChat: () => void;
 };
 
 const Contact = ({ onOpenChat }: ContactProps) => {
+  const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -19,6 +20,19 @@ const Contact = ({ onOpenChat }: ContactProps) => {
       ...formData,
       [e.target.name]: e.target.value
     });
+  };
+
+  const handleAiChatClick = () => {
+    const { name, email, subject, message } = formData;
+    if (!name || !email || !subject || !message) {
+      toast({
+        title: "Incomplete Form",
+        description: "Please fill out all fields before starting the AI chat.",
+        variant: "destructive",
+      });
+    } else {
+      onOpenChat();
+    }
   };
 
   return (
@@ -137,7 +151,7 @@ const Contact = ({ onOpenChat }: ContactProps) => {
               ></textarea>
               <button
                 type="button"
-                onClick={onOpenChat}
+                onClick={handleAiChatClick}
                 className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300"
               >
                 <Bot className="h-5 w-5" />
