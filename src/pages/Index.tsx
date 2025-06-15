@@ -1,3 +1,5 @@
+
+import { useState } from 'react';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
@@ -9,6 +11,8 @@ import Footer from '@/components/Footer';
 import AIChatWidget from "@/components/AIChatWidget";
 
 const Index = () => {
+  const [isChatOpen, setIsChatOpen] = useState(false);
+
   return (
     <div className="min-h-screen">
       <Header />
@@ -17,9 +21,9 @@ const Index = () => {
       <Skills />
       <Projects />
       <Services />
-      <Contact />
+      <Contact onOpenChat={() => setIsChatOpen(true)} />
       <Footer />
-      <AIChatWidget />
+      <AIChatWidget open={isChatOpen} onOpenChange={setIsChatOpen} />
     </div>
   );
 };

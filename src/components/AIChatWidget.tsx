@@ -1,8 +1,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
-import { Drawer, DrawerContent, DrawerTrigger, DrawerHeader, DrawerTitle, DrawerClose } from "@/components/ui/drawer";
+import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerClose } from "@/components/ui/drawer";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Bot, MessageCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -10,8 +9,12 @@ type Message = { type: "user" | "ai"; text: string };
 
 const initialPrompt = "Hi! 👋 I’m your AI assistant. Ask me anything about AI automation, agents, prompt engineering, or solopreneur topics.";
 
-export default function AIChatWidget() {
-  const [open, setOpen] = useState(false);
+type AIChatWidgetProps = {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+};
+
+export default function AIChatWidget({ open, onOpenChange }: AIChatWidgetProps) {
   const [messages, setMessages] = useState<Message[]>([{ type: "ai", text: initialPrompt }]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -48,81 +51,67 @@ export default function AIChatWidget() {
   };
 
   return (
-    <>
-      {/* Floating Chat Launcher */}
-      <div className="fixed bottom-6 right-6 z-50">
-        <Drawer open={open} onOpenChange={setOpen}>
-          <DrawerTrigger asChild>
-            <button
-              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full shadow-lg p-4 hover:scale-105 transition-all flex items-center gap-2"
-              aria-label="Open AI Chat"
-            >
-              <Bot className="w-6 h-6" />
-              <span className="font-semibold hidden md:inline">AI Chat</span>
-            </button>
-          </DrawerTrigger>
-          <DrawerContent className="max-w-md mx-auto">
-            <DrawerHeader>
-              <DrawerTitle className="flex items-center gap-2"><Bot className="w-5 h-5 mr-1" />AI Chat Assistant</DrawerTitle>
-              <DrawerClose className="absolute right-4 top-4 text-gray-500 hover:text-blue-700" />
-            </DrawerHeader>
-            {/* Chat messages display */}
-            <div
-              ref={messagesRef}
-              className="px-4 pb-1 md:pb-0 overflow-y-auto max-h-[40vh] md:max-h-[250px] min-h-[180px] space-y-3"
-            >
-              {messages.map((msg, idx) => (
-                <div key={idx} className={cn(
-                  "flex",
-                  msg.type === "ai" ? "justify-start" : "justify-end"
-                )}>
-                  <div className={cn(
-                    "px-3 py-2 rounded-lg text-sm max-w-xs md:max-w-md",
-                    msg.type === "ai"
-                      ? "bg-blue-50 text-blue-900 flex items-center gap-2"
-                      : "bg-gradient-to-r from-purple-500 to-blue-500 text-white"
-                  )}>
-                    {msg.type === "ai" && <Bot size={16} className="mr-1 shrink-0" />}
-                    <span>{msg.text}</span>
-                  </div>
-                </div>
-              ))}
-              {loading && (
-                <div className="flex justify-start">
-                  <div className="bg-blue-50 text-blue-500 px-3 py-2 rounded-lg text-sm flex items-center gap-2 animate-pulse">
-                    <Bot size={16} className="mr-1 shrink-0" />
-                    <span>Typing…</span>
-                  </div>
-                </div>
-              )}
+    <Drawer open={open} onOpenChange={onOpenChange}>
+      <DrawerContent className="max-w-md mx-auto">
+        <DrawerHeader>
+          <DrawerTitle className="flex items-center gap-2"><Bot className="w-5 h-5 mr-1" />AI Chat Assistant</DrawerTitle>
+          <DrawerClose className="absolute right-4 top-4 text-gray-500 hover:text-blue-700" />
+        </DrawerHeader>
+        {/* Chat messages display */}
+        <div
+          ref={messagesRef}
+          className="px-4 pb-1 md:pb-0 overflow-y-auto max-h-[40vh] md:max-h-[250px] min-h-[180px] space-y-3"
+        >
+          {messages.map((msg, idx) => (
+            <div key={idx} className={cn(
+              "flex",
+              msg.type === "ai" ? "justify-start" : "justify-end"
+            )}>
+              <div className={cn(
+                "px-3 py-2 rounded-lg text-sm max-w-xs md:max-w-md",
+                msg.type === "ai"
+                  ? "bg-blue-50 text-blue-900 flex items-center gap-2"
+                  : "bg-gradient-to-r from-purple-500 to-blue-500 text-white"
+              )}>
+                {msg.type === "ai" && <Bot size={16} className="mr-1 shrink-0" />}
+                <span>{msg.text}</span>
+              </div>
             </div>
-            {/* Chat input */}
-            <form
-              className="flex items-center border-t border-gray-200 mt-2 px-4 py-2 gap-2"
-              onSubmit={handleSend}
-            >
-              <Input
-                type="text"
-                value={input}
-                disabled={loading}
-                placeholder="Type your message…"
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey) handleSend(e); }}
-              />
-              <button
-                type="submit"
-                disabled={loading || !input.trim()}
-                className="bg-blue-600 text-white px-3 py-2 rounded-lg hover:bg-blue-700 transition disabled:opacity-50"
-              >
-                <MessageCircle className="w-5 h-5" />
-              </button>
-            </form>
-            <div className="p-2 text-xs text-center text-gray-400">
-              This is a demo AI chat simulation.<br/>For a true AI chat, connect a backend or external API.
+          ))}
+          {loading && (
+            <div className="flex justify-start">
+              <div className="bg-blue-50 text-blue-500 px-3 py-2 rounded-lg text-sm flex items-center gap-2 animate-pulse">
+                <Bot size={16} className="mr-1 shrink-0" />
+                <span>Typing…</span>
+              </div>
             </div>
-          </DrawerContent>
-        </Drawer>
-      </div>
-    </>
+          )}
+        </div>
+        {/* Chat input */}
+        <form
+          className="flex items-center border-t border-gray-200 mt-2 px-4 py-2 gap-2"
+          onSubmit={handleSend}
+        >
+          <Input
+            type="text"
+            value={input}
+            disabled={loading}
+            placeholder="Type your message…"
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey) handleSend(e); }}
+          />
+          <button
+            type="submit"
+            disabled={loading || !input.trim()}
+            className="bg-blue-600 text-white px-3 py-2 rounded-lg hover:bg-blue-700 transition disabled:opacity-50"
+          >
+            <MessageCircle className="w-5 h-5" />
+          </button>
+        </form>
+        <div className="p-2 text-xs text-center text-gray-400">
+          This is a demo AI chat simulation.<br/>For a true AI chat, connect a backend or external API.
+        </div>
+      </DrawerContent>
+    </Drawer>
   );
 }

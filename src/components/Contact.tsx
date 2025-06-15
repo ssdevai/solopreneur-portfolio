@@ -2,19 +2,17 @@
 import { Mail, Phone, Linkedin, Github, Calendar } from 'lucide-react';
 import { useState } from 'react';
 
-const Contact = () => {
+type ContactProps = {
+  onOpenChat: () => void;
+};
+
+const Contact = ({ onOpenChat }: ContactProps) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
     message: ''
   });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Handle form submission here
-  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -98,7 +96,7 @@ const Contact = () => {
           {/* Contact Form */}
           <div className="bg-gray-50 rounded-xl p-8">
             <h3 className="text-2xl font-semibold text-gray-900 mb-6">Tell me about your project requirement to get the AI guided assistant</h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <input
                   type="text"
@@ -138,7 +136,8 @@ const Contact = () => {
                 required
               ></textarea>
               <button
-                type="submit"
+                type="button"
+                onClick={onOpenChat}
                 className="w-full px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300"
               >
                 AI Chat
