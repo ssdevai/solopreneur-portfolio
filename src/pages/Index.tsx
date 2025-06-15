@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
@@ -12,6 +11,20 @@ import AIChatWidget from "@/components/AIChatWidget";
 
 const Index = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [chatUserName, setChatUserName] = useState<string | undefined>(undefined);
+  const [chatContext, setChatContext] = useState<string | undefined>(undefined);
+
+  // Custom handler to receive user info and open chat:
+  const handleOpenChat = (name: string, subject: string, message: string) => {
+    setChatUserName(name);
+    // Compose the project context string:
+    const summary =
+      subject && message
+        ? `"${subject.trim()}" — ${message.trim()}`
+        : subject || message || "";
+    setChatContext(summary);
+    setIsChatOpen(true);
+  };
 
   return (
     <div className="min-h-screen">
@@ -21,9 +34,14 @@ const Index = () => {
       <Skills />
       <Projects />
       <Services />
-      <Contact onOpenChat={() => setIsChatOpen(true)} />
+      <Contact onOpenChat={handleOpenChat} />
       <Footer />
-      <AIChatWidget open={isChatOpen} onOpenChange={setIsChatOpen} />
+      <AIChatWidget
+        open={isChatOpen}
+        onOpenChange={setIsChatOpen}
+        userName={chatUserName}
+        projectContext={chatContext}
+      />
     </div>
   );
 };

@@ -7,20 +7,50 @@ import { cn } from "@/lib/utils";
 
 type Message = { type: "user" | "ai"; text: string };
 
-const initialPrompt = "Hi! 👋 I’m your AI assistant. Ask me anything about AI automation, agents, prompt engineering, or solopreneur topics.";
-
 type AIChatWidgetProps = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  userName?: string;
+  projectContext?: string;
 };
 
-export default function AIChatWidget({ open, onOpenChange }: AIChatWidgetProps) {
-  const [messages, setMessages] = useState<Message[]>([{ type: "ai", text: initialPrompt }]);
+function buildInitialPrompt(userName?: string, projectContext?: string) {
+  let intro = "Hi! 👋 I’m your AI assistant.";
+  if (userName && userName.trim()) {
+    intro = `Hi ${userName.trim()}! 👋 I’m your AI assistant.`;
+  }
+  let context = "";
+  if (projectContext && projectContext.trim()) {
+    context = `\n\nThanks for sharing your project details: ${projectContext}`;
+  }
+  return (
+    intro +
+    context +
+    "\nAsk me anything about AI, automation, app building, or your unique project challenges. I'll tailor my answers to your needs!"
+  );
+}
+
+export default function AIChatWidget({
+  open,
+  onOpenChange,
+  userName,
+  projectContext,
+}: AIChatWidgetProps) {
+  const [messages, setMessages] = useState<Message[]>([
+    { type: "ai", text: buildInitialPrompt(userName, projectContext) },
+  ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const messagesRef = useRef<HTMLDivElement>(null);
 
-  // Auto-scroll to bottom on new message
+  // Reset initial message if userName/projectContext changes on open
+  useEffect(() => {
+    if (open) {
+      setMessages([{ type: "ai", text: buildInitialPrompt(userName, projectContext) }]);
+    }
+    // eslint-disable-next-line
+  }, [open, userName, projectContext]);
+
   useEffect(() => {
     if (messagesRef.current) {
       messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
@@ -36,15 +66,19 @@ export default function AIChatWidget({ open, onOpenChange }: AIChatWidgetProps) 
     setInput("");
     setLoading(true);
 
-    // Simulate AI response
     setTimeout(() => {
-      // Basic AI echo with minimal tailoring (replace with real API later!)
-      let aiText = "I'm here to help! Could you share more details?";
-      if (/automation/i.test(trimmed)) aiText = "AI automation streamlines tasks and improves productivity. How would you like to automate your workflow?";
-      else if (/agent/i.test(trimmed)) aiText = "AI agents act autonomously to complete tasks. I build custom agents for SaaS and n8n!";
-      else if (/n8n/i.test(trimmed)) aiText = "n8n is amazing for workflow automation—connect it with AI for even greater power!";
-      else if (/prompt/i.test(trimmed)) aiText = "Prompt engineering is about crafting instructions for AIs to get precise results. What task do you have in mind?";
-      else if (/solopreneur|product|revenue/i.test(trimmed)) aiText = "Solopreneurs thrive with lean AI tools and focused strategies. Let's discuss your next AI-powered product!";
+      let aiText =
+        "I'm here to help! Could you share more details or clarify your goals?";
+      if (/automation/i.test(trimmed))
+        aiText = "AI automation can streamline your business and save time. How can I tailor automation to your project?";
+      else if (/agent/i.test(trimmed))
+        aiText = "AI agents help automate specialized business tasks. Would you like advice on building or deploying one?";
+      else if (/n8n/i.test(trimmed))
+        aiText = "n8n allows for powerful workflow automation—let's connect it with AI for even greater results!";
+      else if (/prompt/i.test(trimmed))
+        aiText = "Great! Prompt engineering means crafting instructions for AI to get ideal responses. What kind of output do you need?";
+      else if (/solopreneur|product|revenue/i.test(trimmed))
+        aiText = "Solopreneurs benefit from focused AI solutions for rapid growth and easy scaling. Want strategies or tech advice?";
       setMessages((prev) => [...prev, { type: "ai", text: aiText }]);
       setLoading(false);
     }, 900);
@@ -54,7 +88,10 @@ export default function AIChatWidget({ open, onOpenChange }: AIChatWidgetProps) 
     <Drawer open={open} onOpenChange={onOpenChange}>
       <DrawerContent className="max-w-md mx-auto">
         <DrawerHeader>
-          <DrawerTitle className="flex items-center gap-2"><Bot className="w-5 h-5 mr-1" />AI Chat Assistant</DrawerTitle>
+          <DrawerTitle className="flex items-center gap-2">
+            <Bot className="w-5 h-5 mr-1" />
+            AI Chat Assistant
+          </DrawerTitle>
           <DrawerClose className="absolute right-4 top-4 text-gray-500 hover:text-blue-700" />
         </DrawerHeader>
         {/* Chat messages display */}
@@ -109,7 +146,7 @@ export default function AIChatWidget({ open, onOpenChange }: AIChatWidgetProps) 
           </button>
         </form>
         <div className="p-2 text-xs text-center text-gray-400">
-          This is a demo AI chat simulation.<br/>For a true AI chat, connect a backend or external API.
+          This is a demo AI chat simulation.<br/>For intelligent project advice, connect a backend or AI API.
         </div>
       </DrawerContent>
     </Drawer>
