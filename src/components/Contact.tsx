@@ -141,7 +141,7 @@ const Contact = () => {
                 type="submit"
                 className="w-full px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300"
               >
-                Start the AI Conversation
+                AI Chat
               </button>
             </form>
           </div>
