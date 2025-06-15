@@ -1,5 +1,5 @@
 
-import { Mail, Phone, Linkedin, Github, Calendar } from 'lucide-react';
+import { Mail, Phone, Linkedin, Github, Calendar, Bot } from 'lucide-react';
 import { useState } from 'react';
 
 type ContactProps = {
@@ -138,8 +138,9 @@ const Contact = ({ onOpenChat }: ContactProps) => {
               <button
                 type="button"
                 onClick={onOpenChat}
-                className="w-full px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300"
+                className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300"
               >
+                <Bot className="h-5 w-5" />
                 AI Chat
               </button>
             </form>
