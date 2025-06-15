@@ -1,36 +1,29 @@
 
 import { Github, Link, TrendingUp } from 'lucide-react';
+import { useProjects } from '@/hooks/useProjects';
 
 const Projects = () => {
-  const projects = [
-    {
-      title: "TaskFlow SaaS",
-      description: "Project management platform serving 5,000+ users. Built with React and Node.js, generating $50K+ monthly recurring revenue through subscription tiers.",
-      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&h=400&fit=crop",
-      tech: ["React", "Node.js", "PostgreSQL", "Stripe"],
-      metrics: { users: "5K+", revenue: "$50K MRR", growth: "+25%" },
-      github: "#",
-      live: "#"
-    },
-    {
-      title: "AnalyticsPro Dashboard",
-      description: "Business intelligence SaaS helping SMBs make data-driven decisions. Custom visualization engine with real-time data processing and white-label options.",
-      image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=600&h=400&fit=crop",
-      tech: ["Vue.js", "Python", "FastAPI", "AWS"],
-      metrics: { users: "2K+", revenue: "$30K MRR", growth: "+40%" },
-      github: "#",
-      live: "#"
-    },
-    {
-      title: "ContentCraft AI",
-      description: "AI-powered content generation tool for marketers and creators. Integrated OpenAI APIs with custom fine-tuning for industry-specific content.",
-      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=600&h=400&fit=crop",
-      tech: ["Next.js", "OpenAI API", "Supabase", "Vercel"],
-      metrics: { users: "8K+", revenue: "$75K MRR", growth: "+60%" },
-      github: "#",
-      live: "#"
-    }
-  ];
+  const { data: projects, isLoading, error } = useProjects();
+
+  if (isLoading) {
+    return (
+      <section id="projects" className="py-20 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="text-center">Loading projects...</div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section id="projects" className="py-20 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="text-center text-red-600">Error loading projects</div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="projects" className="py-20 bg-white">
@@ -44,11 +37,11 @@ const Projects = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 group">
+          {projects?.map((project) => (
+            <div key={project.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 group">
               <div className="relative overflow-hidden">
                 <img 
-                  src={project.image} 
+                  src={project.image_url || ''} 
                   alt={project.title}
                   className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                 />
@@ -59,23 +52,25 @@ const Projects = () => {
                 <h3 className="text-xl font-semibold mb-3 text-gray-900">{project.title}</h3>
                 <p className="text-gray-600 mb-4 leading-relaxed">{project.description}</p>
                 
-                <div className="grid grid-cols-3 gap-2 mb-4 p-3 bg-green-50 rounded-lg">
-                  <div className="text-center">
-                    <div className="text-sm font-semibold text-green-700">{project.metrics.users}</div>
-                    <div className="text-xs text-green-600">Users</div>
+                {project.metrics && (
+                  <div className="grid grid-cols-3 gap-2 mb-4 p-3 bg-green-50 rounded-lg">
+                    <div className="text-center">
+                      <div className="text-sm font-semibold text-green-700">{(project.metrics as any).users}</div>
+                      <div className="text-xs text-green-600">Users</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-sm font-semibold text-green-700">{(project.metrics as any).revenue}</div>
+                      <div className="text-xs text-green-600">Revenue</div>
+                    </div>
+                    <div className="text-center flex items-center justify-center">
+                      <TrendingUp size={12} className="text-green-600 mr-1" />
+                      <div className="text-sm font-semibold text-green-700">{(project.metrics as any).growth}</div>
+                    </div>
                   </div>
-                  <div className="text-center">
-                    <div className="text-sm font-semibold text-green-700">{project.metrics.revenue}</div>
-                    <div className="text-xs text-green-600">Revenue</div>
-                  </div>
-                  <div className="text-center flex items-center justify-center">
-                    <TrendingUp size={12} className="text-green-600 mr-1" />
-                    <div className="text-sm font-semibold text-green-700">{project.metrics.growth}</div>
-                  </div>
-                </div>
+                )}
                 
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tech.map((tech, techIndex) => (
+                  {project.tech?.map((tech, techIndex) => (
                     <span key={techIndex} className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">
                       {tech}
                     </span>
@@ -84,14 +79,14 @@ const Projects = () => {
                 
                 <div className="flex space-x-4">
                   <a 
-                    href={project.github}
+                    href={project.github_url || '#'}
                     className="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors duration-200"
                   >
                     <Github size={18} />
                     <span>Code</span>
                   </a>
                   <a 
-                    href={project.live}
+                    href={project.live_url || '#'}
                     className="flex items-center space-x-2 text-gray-600 hover:text-purple-600 transition-colors duration-200"
                   >
                     <Link size={18} />
