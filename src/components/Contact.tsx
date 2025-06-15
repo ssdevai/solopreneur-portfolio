@@ -97,7 +97,7 @@ const Contact = () => {
 
           {/* Contact Form */}
           <div className="bg-gray-50 rounded-xl p-8">
-            <h3 className="text-2xl font-semibold text-gray-900 mb-6">Tell Me About Your AI Project</h3>
+            <h3 className="text-2xl font-semibold text-gray-900 mb-6">Tell me about your project requirement to get the AI guided assistant</h3>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <input
