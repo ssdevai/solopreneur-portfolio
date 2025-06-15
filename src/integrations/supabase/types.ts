@@ -9,7 +9,105 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      projects: {
+        Row: {
+          created_at: string
+          description: string
+          github_url: string | null
+          id: string
+          image_url: string | null
+          live_url: string | null
+          metrics: Json | null
+          tech: string[] | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          github_url?: string | null
+          id?: string
+          image_url?: string | null
+          live_url?: string | null
+          metrics?: Json | null
+          tech?: string[] | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          github_url?: string | null
+          id?: string
+          image_url?: string | null
+          live_url?: string | null
+          metrics?: Json | null
+          tech?: string[] | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      services: {
+        Row: {
+          created_at: string
+          description: string
+          features: string[]
+          icon: string | null
+          id: string
+          sort_order: number | null
+          title: string
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          features: string[]
+          icon?: string | null
+          id?: string
+          sort_order?: number | null
+          title: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          features?: string[]
+          icon?: string | null
+          id?: string
+          sort_order?: number | null
+          title?: string
+        }
+        Relationships: []
+      }
+      skills: {
+        Row: {
+          category: string
+          color: string | null
+          created_at: string
+          icon: string | null
+          id: string
+          skill_list: string[]
+          sort_order: number | null
+        }
+        Insert: {
+          category: string
+          color?: string | null
+          created_at?: string
+          icon?: string | null
+          id?: string
+          skill_list: string[]
+          sort_order?: number | null
+        }
+        Update: {
+          category?: string
+          color?: string | null
+          created_at?: string
+          icon?: string | null
+          id?: string
+          skill_list?: string[]
+          sort_order?: number | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
